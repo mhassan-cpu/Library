@@ -633,6 +633,15 @@
       "createdAt": "2025-05-04T13:29:38.926Z",
       "updatedAt": "2025-05-04T13:29:38.926Z",
       "id": 56
+    },
+    {
+      "title": "Granite",
+      "author": "Joann Huels",
+      "isbn": "543-935-611",
+      "releaseDate": "2025-05-04T20:01:45.988Z",
+      "createdAt": "2025-05-04T20:01:46.081Z",
+      "updatedAt": "2025-05-04T20:01:46.082Z",
+      "id": 57
     }
   ],
   "households": [
@@ -1728,6 +1737,13 @@
       "createdAt": "2025-05-04T12:37:11.728Z",
       "updatedAt": "2025-05-04T12:37:11.728Z",
       "id": 40
+    },
+    {
+      "name": "Melanie Lang DVM",
+      "books": [],
+      "createdAt": "2025-05-04T20:11:34.147Z",
+      "updatedAt": "2025-05-04T20:11:34.147Z",
+      "id": 41
     }
   ]
 }
