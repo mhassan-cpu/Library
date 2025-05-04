@@ -32,7 +32,7 @@ jobs:
         run: |
           newman run "Library.postman_collection.json" \
             --environment "Library_dev.postman_environment.json" \
-            --reporters cli,htmlextra || || exit 0 \
+            --reporters cli,htmlextra || exit 0 \
             --reporter-htmlextra-export newman/report.html
 
       
