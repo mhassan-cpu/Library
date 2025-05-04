@@ -23,9 +23,4 @@ jobs:
       - name: Run API tests with Newman
         run: npm run postmanTests
 
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v3
-        with:
-        name: newman-html-report
-        path: reports/htmlreport.html
-
+     
