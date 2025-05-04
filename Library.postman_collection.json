@@ -5,7 +5,7 @@
 		"description": "This project demonstrates a RESTful API built with **Node.js** and **JSON Server**. It includes endpoints for **Books**, **Households**, **Users**, and **Wishlists**, supporting full CRUD operations: **Create**, **Read**, **Update**, and **Delete**\n\n<img src=\"https://content.pstmn.io/1b2ca7bb-3fcc-4950-9329-45fb0c51ab22/aW1hZ2VzLnBuZw==\">",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18930967",
-		"_collection_link": "https://yxyxyxyxyxyx.postman.co/workspace/Library~1def04b0-3f5c-47d0-9844-9972422a2811/collection/18930967-94f12674-06ec-441d-8f17-78ba0a7e1be2?action=share&source=collection_link&creator=18930967"
+		"_collection_link": "https://yxyxyxyxyxyx.postman.co/workspace/1def04b0-3f5c-47d0-9844-9972422a2811/collection/18930967-94f12674-06ec-441d-8f17-78ba0a7e1be2?action=share&source=collection_link&creator=18930967"
 	},
 	"item": [
 		{
@@ -173,7 +173,101 @@
 						},
 						"description": "Create a new book."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "1.1 Create New Book",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"infrastructure\",\r\n    \"author\": \"Dwight Schimmel\",\r\n    \"isbn\": \"99-797-840\",\r\n    \"releaseDate\": \"2025-05-04T12:37:59.958Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/books",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "220"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"dc-Av7Ltje72lv3Sa/qtzdfHT93c/0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:33:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Checking\",\n    \"author\": \"Marty Moore\",\n    \"isbn\": \"288-306-637\",\n    \"releaseDate\": \"2025-05-04T12:33:12.636Z\",\n    \"createdAt\": \"2025-05-04T12:33:12.650Z\",\n    \"updatedAt\": \"2025-05-04T12:33:12.650Z\",\n    \"id\": 55\n}"
+						}
+					]
 				},
 				{
 					"name": "1.2 Get All Books",
@@ -260,28 +354,10 @@
 									"    });\r",
 									"});\r",
 									"\r",
-									"// [1.2] TC10 - Validate that publicationDate or releaseDate exists and is valid if present\r",
-									"pm.test(\"[1.2] TC10 - Validate date field formats\", function () {\r",
-									"    const isoFormat = /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z$/;         // Full ISO\r",
-									"    const isoLikeFormat = /^\\d{4}-\\d{2}-\\d{2}$/;                              // ISO without time\r",
-									"    const slashFormat = /^(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01])\\/\\d{4}$/;    // MM/DD/YYYY\r",
-									"\r",
-									"    jsonData.forEach(book => {\r",
-									"        let dateField = book.publicationDate || book.releaseDate;\r",
-									"        if (dateField) {\r",
-									"            const isValid =\r",
-									"                isoFormat.test(dateField) ||\r",
-									"                isoLikeFormat.test(dateField) ||\r",
-									"                slashFormat.test(dateField);\r",
-									"            pm.expect(isValid, `Invalid date format for: ${dateField}`).to.be.true;\r",
-									"        }\r",
-									"    });\r",
-									"});\r",
 									"\r",
 									"\r",
-									"\r",
-									"// [1.2] TC11 - Validate no extra unexpected fields are present\r",
-									"pm.test(\"[1.2] TC11 - Validate no extra unexpected fields are present\", function () {\r",
+									"// [1.2] TC10 - Validate no extra unexpected fields are present\r",
+									"pm.test(\"[1.2] TC10 - Validate no extra unexpected fields are present\", function () {\r",
 									"    const expectedFields = [\"id\", \"title\", \"author\", \"isbn\", \"publicationDate\", \"releaseDate\", \"createdAt\", \"updatedAt\", \"links\"];\r",
 									"    jsonData.forEach(book => {\r",
 									"        Object.keys(book).forEach(key => {\r",
@@ -318,7 +394,96 @@
 						},
 						"description": "Retrieve all books."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "1.2 Get All Books",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "G-Token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/books",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3ed7-Q7+7Bgd6KGbnTN2m4JPfn6zgxtQ\""
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:33:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"title\": \"Gloves\",\n        \"author\": \"Gerardo Lebsack\",\n        \"publicationDate\": \"1998-06-01T00:00:00.000Z\",\n        \"isbn\": \"213-234-94\",\n        \"createdAt\": \"2020-03-27T00:00:00.000Z\",\n        \"updatedAt\": \"2025-05-04T09:54:16.836Z\",\n        \"releaseDate\": \"2025-05-04T09:54:16.809Z\"\n    },\n    {\n        \"id\": 3,\n        \"title\": \"Lectures to My Students\",\n        \"author\": \"Charles Spurgeon\",\n        \"publicationDate\": \"2010-04-15T00:00:00.000Z\",\n        \"isbn\": \"1598565176\",\n        \"createdAt\": \"2020-03-27T00:00:00.000Z\",\n        \"updatedAt\": \"2020-03-27T00:00:00.000Z\"\n    },\n    {\n        \"id\": 4,\n        \"title\": \"The Screwtape Letters\",\n        \"author\": \"C. S. Lewis\",\n        \"publicationDate\": \"2015-03-21T00:00:00.000Z\",\n        \"isbn\": \"0060652934\",\n        \"createdAt\": \"2020-03-27T00:00:00.000Z\",\n        \"updatedAt\": \"2020-03-27T00:00:00.000Z\"\n    },\n    {\n        \"title\": \"You Are What You Love: The Spiritual Power of Habit\",\n        \"author\": \"James K.A. Smith\",\n        \"isbn\": \"158743380X\",\n        \"releaseDate\": \"2016-03-05\",\n        \"createdAt\": \"2021-06-22T22:15:41.821Z\",\n        \"updatedAt\": \"2021-06-22T22:15:41.821Z\",\n        \"id\": 5,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/5\"\n            }\n        ]\n    },\n    {\n        \"title\": \"Satchel: The Life and Times of an American Legend\",\n        \"author\": \"Larry Tye\",\n        \"isbn\": \"0812977971\",\n        \"publicationDate\": \"2010-05-04\",\n        \"createdAt\": \"2021-06-27T19:44:37.598Z\",\n        \"updatedAt\": \"2021-06-27T19:44:37.598Z\",\n        \"id\": 6,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/6\"\n            }\n        ]\n    },\n    {\n        \"title\": \"Writing To Learn\",\n        \"author\": \"William Zinsser\",\n        \"isbn\": \"0062720406\",\n        \"publicationDate\": \"1993-06-04\",\n        \"createdAt\": \"2021-06-27T19:44:37.624Z\",\n        \"updatedAt\": \"2021-06-27T19:44:37.624Z\",\n        \"id\": 7,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/7\"\n            }\n        ]\n    },\n    {\n        \"title\": \"John Calvin: A Pilgrim's Life\",\n        \"author\": \"Herman J. Selderhuis\",\n        \"isbn\": \"0830829210\",\n        \"publicationDate\": \"2009-02-21\",\n        \"createdAt\": \"2021-06-27T19:44:37.643Z\",\n        \"updatedAt\": \"2021-06-27T19:44:37.643Z\",\n        \"id\": 8,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/8\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:44:37.660Z\",\n        \"updatedAt\": \"2021-06-27T19:44:37.660Z\",\n        \"id\": 9,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/9\"\n            }\n        ]\n    },\n    {\n        \"title\": \"Satchel: The Life and Times of an American Legend\",\n        \"author\": \"Larry Tye\",\n        \"isbn\": \"0812977971\",\n        \"publicationDate\": \"2010-05-04\",\n        \"createdAt\": \"2021-06-27T19:44:48.343Z\",\n        \"updatedAt\": \"2021-06-27T19:44:48.343Z\",\n        \"id\": 10,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/10\"\n            }\n        ]\n    },\n    {\n        \"title\": \"Writing To Learn\",\n        \"author\": \"William Zinsser\",\n        \"isbn\": \"0062720406\",\n        \"publicationDate\": \"1993-06-04\",\n        \"createdAt\": \"2021-06-27T19:44:48.362Z\",\n        \"updatedAt\": \"2021-06-27T19:44:48.362Z\",\n        \"id\": 11,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/11\"\n            }\n        ]\n    },\n    {\n        \"title\": \"John Calvin: A Pilgrim's Life\",\n        \"author\": \"Herman J. Selderhuis\",\n        \"isbn\": \"0830829210\",\n        \"publicationDate\": \"2009-02-21\",\n        \"createdAt\": \"2021-06-27T19:44:48.382Z\",\n        \"updatedAt\": \"2021-06-27T19:44:48.382Z\",\n        \"id\": 12,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/12\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:44:48.402Z\",\n        \"updatedAt\": \"2021-06-27T19:44:48.402Z\",\n        \"id\": 13,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/13\"\n            }\n        ]\n    },\n    {\n        \"title\": \"Satchel: The Life and Times of an American Legend\",\n        \"author\": \"Larry Tye\",\n        \"isbn\": \"0812977971\",\n        \"publicationDate\": \"2010-05-04\",\n        \"createdAt\": \"2021-06-27T19:53:22.817Z\",\n        \"updatedAt\": \"2021-06-27T19:53:22.817Z\",\n        \"id\": 14,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/14\"\n            }\n        ]\n    },\n    {\n        \"title\": \"Writing To Learn\",\n        \"author\": \"William Zinsser\",\n        \"isbn\": \"0062720406\",\n        \"publicationDate\": \"1993-06-04\",\n        \"createdAt\": \"2021-06-27T19:53:22.845Z\",\n        \"updatedAt\": \"2021-06-27T19:53:22.845Z\",\n        \"id\": 15,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/15\"\n            }\n        ]\n    },\n    {\n        \"title\": \"John Calvin: A Pilgrim's Life\",\n        \"author\": \"Herman J. Selderhuis\",\n        \"isbn\": \"0830829210\",\n        \"publicationDate\": \"2009-02-21\",\n        \"createdAt\": \"2021-06-27T19:53:22.866Z\",\n        \"updatedAt\": \"2021-06-27T19:53:22.866Z\",\n        \"id\": 16,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/16\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:53:22.887Z\",\n        \"updatedAt\": \"2021-06-27T19:53:22.887Z\",\n        \"id\": 17,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/17\"\n            }\n        ]\n    },\n    {\n        \"title\": \"Satchel: The Life and Times of an American Legend\",\n        \"author\": \"Larry Tye\",\n        \"isbn\": \"0812977971\",\n        \"publicationDate\": \"2010-05-04\",\n        \"createdAt\": \"2021-06-27T19:53:44.501Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.501Z\",\n        \"id\": 18,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/18\"\n            }\n        ]\n    },\n    {\n        \"title\": \"Writing To Learn\",\n        \"author\": \"William Zinsser\",\n        \"isbn\": \"0062720406\",\n        \"publicationDate\": \"1993-06-04\",\n        \"createdAt\": \"2021-06-27T19:53:44.527Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.527Z\",\n        \"id\": 19,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/19\"\n            }\n        ]\n    },\n    {\n        \"title\": \"John Calvin: A Pilgrim's Life\",\n        \"author\": \"Herman J. Selderhuis\",\n        \"isbn\": \"0830829210\",\n        \"publicationDate\": \"2009-02-21\",\n        \"createdAt\": \"2021-06-27T19:53:44.543Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.543Z\",\n        \"id\": 20,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/20\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:53:44.563Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.563Z\",\n        \"id\": 21,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/21\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:53:44.584Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.584Z\",\n        \"id\": 22,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/22\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:53:44.602Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.602Z\",\n        \"id\": 23,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/23\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:53:44.620Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.620Z\",\n        \"id\": 24,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/24\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:53:44.644Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.644Z\",\n        \"id\": 25,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/25\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104523\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:53:44.664Z\",\n        \"updatedAt\": \"2021-06-27T19:53:44.664Z\",\n        \"id\": 26,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/26\"\n            }\n        ]\n    },\n    {\n        \"title\": \"The Brazilian Jiu Jitsu Globe Trotter\",\n        \"author\": \"Christian Gaugart\",\n        \"isbn\": \"1479104524\",\n        \"publicationDate\": \"2012-11-13\",\n        \"createdAt\": \"2021-06-27T19:53:44.686Z\",\n        \"updatedAt\": \"2025-03-31T00:50:12.307Z\",\n        \"id\": 27,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/books/27\"\n            }\n        ]\n    },\n    {\n        \"title\": \"test\",\n        \"author\": \"test\",\n        \"isbn\": \"test\",\n        \"releaseDate\": \"11/11/2025\",\n        \"createdAt\": \"2025-05-03T13:26:38.004Z\",\n        \"updatedAt\": \"2025-05-03T13:26:38.004Z\",\n        \"id\": 28\n    },\n    {\n        \"title\": \"egerb\",\n        \"author\": \"dfbdfb\",\n        \"isbn\": \"dfbdfb\",\n        \"releaseDate\": \"11/11/2025\",\n        \"createdAt\": \"2025-05-03T13:31:25.953Z\",\n        \"updatedAt\": \"2025-05-03T13:31:25.953Z\",\n        \"id\": 29\n    },\n    {\n        \"title\": \"wfer\",\n        \"author\": \"ergerg\",\n        \"isbn\": \"ergerg\",\n        \"releaseDate\": \"11/11/2025\",\n        \"createdAt\": \"2025-05-03T13:34:37.943Z\",\n        \"updatedAt\": \"2025-05-03T13:34:37.943Z\",\n        \"id\": 30\n    },\n    {\n        \"title\": \"restassured\",\n        \"author\": \"test\",\n        \"isbn\": \"test\",\n        \"releaseDate\": \"11-11-2025\",\n        \"createdAt\": \"2025-05-03T14:22:50.106Z\",\n        \"updatedAt\": \"2025-05-03T14:22:50.106Z\",\n        \"id\": 31\n    },\n    {\n        \"title\": \"Book Title\",\n        \"author\": \"Author\",\n        \"isbn\": \"ISBN\",\n        \"releaseDate\": \"Release Date\",\n        \"createdAt\": \"2025-05-03T14:43:17.863Z\",\n        \"updatedAt\": \"2025-05-03T14:43:17.863Z\",\n        \"id\": 32\n    },\n    {\n        \"title\": \"Book Title\",\n        \"author\": \"Author\",\n        \"isbn\": \"ISBN\",\n        \"releaseDate\": \"Release Date\",\n        \"createdAt\": \"2025-05-03T15:34:31.244Z\",\n        \"updatedAt\": \"2025-05-03T15:34:31.244Z\",\n        \"id\": 33\n    },\n    {\n        \"title\": \"Book Title\",\n        \"author\": \"Author\",\n        \"isbn\": \"ISBN\",\n        \"releaseDate\": \"Release Date\",\n        \"createdAt\": \"2025-05-03T15:34:48.129Z\",\n        \"updatedAt\": \"2025-05-03T15:34:48.129Z\",\n        \"id\": 34\n    },\n    {\n        \"title\": \"Book Title\",\n        \"author\": \"Author\",\n        \"isbn\": \"ISBN\",\n        \"releaseDate\": \"Release Date\",\n        \"createdAt\": \"2025-05-03T15:35:07.084Z\",\n        \"updatedAt\": \"2025-05-03T15:35:07.084Z\",\n        \"id\": 35\n    },\n    {\n        \"title\": \"Book Title\",\n        \"author\": \"Author\",\n        \"isbn\": \"ISBN\",\n        \"releaseDate\": \"Release Date\",\n        \"createdAt\": \"2025-05-03T15:36:10.204Z\",\n        \"updatedAt\": \"2025-05-03T15:36:10.204Z\",\n        \"id\": 36\n    },\n    {\n        \"title\": \"Book Title\",\n        \"author\": \"Author\",\n        \"isbn\": \"ISBN\",\n        \"releaseDate\": \"Release Date\",\n        \"createdAt\": \"2025-05-03T15:37:45.195Z\",\n        \"updatedAt\": \"2025-05-03T15:37:45.195Z\",\n        \"id\": 37\n    },\n    {\n        \"title\": \"dgbdfb\",\n        \"author\": \"dfbdf\",\n        \"isbn\": \"dfbfd\",\n        \"releaseDate\": \"dfbfd\",\n        \"createdAt\": \"2025-05-04T09:27:46.070Z\",\n        \"updatedAt\": \"2025-05-04T09:27:46.070Z\",\n        \"id\": 38\n    },\n    {\n        \"title\": \"Book Title\",\n        \"author\": \"Author\",\n        \"isbn\": \"ISBN\",\n        \"releaseDate\": \"Release Date\",\n        \"createdAt\": \"2025-05-04T09:46:45.169Z\",\n        \"updatedAt\": \"2025-05-04T09:46:45.169Z\",\n        \"id\": 39\n    },\n    {\n        \"title\": \"Book invoice\",\n        \"author\": \"Author Preston Brekke\",\n        \"isbn\": \"93-354-320\",\n        \"releaseDate\": \"2025-05-04T09:52:13.958Z\",\n        \"createdAt\": \"2025-05-04T09:52:13.988Z\",\n        \"updatedAt\": \"2025-05-04T09:52:13.988Z\",\n        \"id\": 40\n    },\n    {\n        \"title\": \"Book Mobility\",\n        \"author\": \"Author Nelson Gerlach\",\n        \"isbn\": \"346-975-45\",\n        \"releaseDate\": \"2025-05-04T09:52:15.443Z\",\n        \"createdAt\": \"2025-05-04T09:52:15.477Z\",\n        \"updatedAt\": \"2025-05-04T09:52:15.477Z\",\n        \"id\": 41\n    },\n    {\n        \"title\": \"Book Tactics\",\n        \"author\": \"Author Robert Nolan IV\",\n        \"isbn\": \"874-6-979\",\n        \"releaseDate\": \"2025-05-04T09:52:16.506Z\",\n        \"createdAt\": \"2025-05-04T09:52:16.529Z\",\n        \"updatedAt\": \"2025-05-04T09:52:16.529Z\",\n        \"id\": 42\n    },\n    {\n        \"title\": \"Book Account\",\n        \"author\": \"Author Tony Auer II\",\n        \"isbn\": \"284-933-891\",\n        \"releaseDate\": \"2025-05-04T09:52:17.665Z\",\n        \"createdAt\": \"2025-05-04T09:52:17.685Z\",\n        \"updatedAt\": \"2025-05-04T09:52:17.685Z\",\n        \"id\": 43\n    },\n    {\n        \"title\": \"Book Producer\",\n        \"author\": \"Author Gregg Bernhard\",\n        \"isbn\": \"290-19-602\",\n        \"releaseDate\": \"2025-05-04T09:52:19.378Z\",\n        \"createdAt\": \"2025-05-04T09:52:19.404Z\",\n        \"updatedAt\": \"2025-05-04T09:52:19.404Z\",\n        \"id\": 44\n    },\n    {\n        \"title\": \"Book service-desk\",\n        \"author\": \"Author Miss Elsa Dibbert\",\n        \"isbn\": \"170-947-544\",\n        \"releaseDate\": \"2025-05-04T09:52:20.218Z\",\n        \"createdAt\": \"2025-05-04T09:52:20.242Z\",\n        \"updatedAt\": \"2025-05-04T09:52:20.242Z\",\n        \"id\": 45\n    },\n    {\n        \"title\": \"Avon\",\n        \"author\": \"Nicole Oberbrunner\",\n        \"isbn\": \"174-323-886\",\n        \"releaseDate\": \"2025-05-04T09:52:32.333Z\",\n        \"createdAt\": \"2025-05-04T09:52:32.362Z\",\n        \"updatedAt\": \"2025-05-04T09:52:32.362Z\",\n        \"id\": 46\n    },\n    {\n        \"title\": \"Shoes\",\n        \"author\": \"Debra Trantow\",\n        \"isbn\": \"85-783-904\",\n        \"releaseDate\": \"2025-05-04T09:52:33.448Z\",\n        \"createdAt\": \"2025-05-04T09:52:33.468Z\",\n        \"updatedAt\": \"2025-05-04T09:52:33.468Z\",\n        \"id\": 47\n    },\n    {\n        \"title\": \"haptic\",\n        \"author\": \"Israel Howe\",\n        \"isbn\": \"907-538-255\",\n        \"releaseDate\": \"2025-05-04T09:52:34.660Z\",\n        \"createdAt\": \"2025-05-04T09:52:34.686Z\",\n        \"updatedAt\": \"2025-05-04T09:52:34.686Z\",\n        \"id\": 48\n    },\n    {\n        \"title\": \"Operations\",\n        \"author\": \"Hugh Ondricka DVM\",\n        \"isbn\": \"590-482-528\",\n        \"releaseDate\": \"2025-05-04T09:52:36.626Z\",\n        \"createdAt\": \"2025-05-04T09:52:36.650Z\",\n        \"updatedAt\": \"2025-05-04T09:52:36.650Z\",\n        \"id\": 49\n    },\n    {\n        \"title\": \"purple\",\n        \"author\": \"Kenny Corkery\",\n        \"isbn\": \"318-257-524\",\n        \"releaseDate\": \"2025-05-04T09:52:44.640Z\",\n        \"createdAt\": \"2025-05-04T09:52:44.669Z\",\n        \"updatedAt\": \"2025-05-04T09:52:44.669Z\",\n        \"id\": 50\n    },\n    {\n        \"title\": \"Yen\",\n        \"author\": \"Mr. Marcos Hoeger\",\n        \"isbn\": \"239-0-108\",\n        \"releaseDate\": \"2025-05-04T09:52:45.541Z\",\n        \"createdAt\": \"2025-05-04T09:52:45.553Z\",\n        \"updatedAt\": \"2025-05-04T09:52:45.553Z\",\n        \"id\": 51\n    },\n    {\n        \"title\": \"Turnpike\",\n        \"author\": \"Wilbur Wisozk\",\n        \"isbn\": \"522-460-573\",\n        \"releaseDate\": \"2025-05-04T09:52:48.335Z\",\n        \"createdAt\": \"2025-05-04T09:52:48.361Z\",\n        \"updatedAt\": \"2025-05-04T09:52:48.362Z\",\n        \"id\": 52\n    },\n    {\n        \"title\": \"Franc\",\n        \"author\": \"Ms. Dora Dietrich\",\n        \"isbn\": \"914-481-108\",\n        \"releaseDate\": \"2025-05-04T09:57:45.933Z\",\n        \"createdAt\": \"2025-05-04T09:57:45.940Z\",\n        \"updatedAt\": \"2025-05-04T09:57:45.940Z\",\n        \"id\": 53\n    },\n    {\n        \"title\": \"olive\",\n        \"author\": \"Kristina Ziemann\",\n        \"isbn\": \"496-407-774\",\n        \"releaseDate\": \"2025-05-04T10:04:11.590Z\",\n        \"createdAt\": \"2025-05-04T10:04:11.596Z\",\n        \"updatedAt\": \"2025-05-04T10:04:11.596Z\",\n        \"id\": 54\n    },\n    {\n        \"title\": \"Checking\",\n        \"author\": \"Marty Moore\",\n        \"isbn\": \"288-306-637\",\n        \"releaseDate\": \"2025-05-04T12:33:12.636Z\",\n        \"createdAt\": \"2025-05-04T12:33:12.650Z\",\n        \"updatedAt\": \"2025-05-04T12:33:12.650Z\",\n        \"id\": 55\n    },\n    {\n        \"title\": \"infomediaries\",\n        \"author\": \"Mr. Raul Bogisich\",\n        \"isbn\": \"401-294-17\",\n        \"releaseDate\": \"2025-05-04T12:33:17.476Z\",\n        \"createdAt\": \"2025-05-04T12:33:17.489Z\",\n        \"updatedAt\": \"2025-05-04T12:33:17.489Z\",\n        \"id\": 56\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "1.3 Get Book By ID",
@@ -429,7 +594,99 @@
 						},
 						"description": "Retrieve a book by its ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "1.3 Get Book By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/books/:bookid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"books",
+										":bookid"
+									],
+									"variable": [
+										{
+											"key": "bookid",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "230"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e6-tkL6rqjunBpON3wazFelNCW4pDU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:33:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"infomediaries\",\n    \"author\": \"Mr. Raul Bogisich\",\n    \"isbn\": \"401-294-17\",\n    \"releaseDate\": \"2025-05-04T12:33:17.476Z\",\n    \"createdAt\": \"2025-05-04T12:33:17.489Z\",\n    \"updatedAt\": \"2025-05-04T12:33:17.489Z\",\n    \"id\": 56\n}"
+						}
+					]
 				},
 				{
 					"name": "1.4 Update Book",
@@ -618,7 +875,108 @@
 						},
 						"description": "Update a book by its ID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "1.4 Update Book",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Shoes\",\n    \"author\": \"Henry Beatty\",\n    \"isbn\": \"964-517-100\",\n    \"releaseDate\": \"2025-05-04T12:38:01.065Z\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/books/:bookid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"books",
+										":bookid"
+									],
+									"variable": [
+										{
+											"key": "bookid",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "219"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"db-ZJ6T0AHn2z9h/U7ZBPChfR1+/cE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:33:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"scalable\",\n    \"author\": \"Vicky Stamm\",\n    \"isbn\": \"700-837-98\",\n    \"releaseDate\": \"2025-05-04T12:33:39.320Z\",\n    \"createdAt\": \"2025-05-04T12:33:17.489Z\",\n    \"updatedAt\": \"2025-05-04T12:33:39.346Z\",\n    \"id\": 56\n}"
+						}
+					]
 				},
 				{
 					"name": "1.5 Delete Book",
@@ -710,7 +1068,87 @@
 						},
 						"description": "Delete a book by its ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "1.5 Delete Book",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/books/:bookid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"books",
+										":bookid"
+									],
+									"variable": [
+										{
+											"key": "bookid",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:33:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			],
 			"description": "Books Folder for all Book's Requests"
@@ -835,7 +1273,96 @@
 						},
 						"description": "Retrieve all households."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "2.1 Get All Households",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/households",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"households"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15aa-md8lttXAm1VHRO+wTcipiLa7G4E\""
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:34:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-26T21:33:28.552Z\",\n        \"updatedAt\": \"2021-06-26T21:33:28.552Z\",\n        \"id\": 2,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/2\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-26T21:34:19.926Z\",\n        \"updatedAt\": \"2021-06-26T21:34:19.926Z\",\n        \"id\": 3,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/3\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-27T18:49:47.360Z\",\n        \"updatedAt\": \"2021-06-27T18:49:47.360Z\",\n        \"id\": 4,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/4\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-27T18:50:08.649Z\",\n        \"updatedAt\": \"2021-06-27T18:50:08.649Z\",\n        \"id\": 5,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/5\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-27T19:02:34.438Z\",\n        \"updatedAt\": \"2021-06-27T19:02:34.438Z\",\n        \"id\": 6,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/6\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:24:17.906Z\",\n        \"updatedAt\": \"2021-06-29T23:24:17.906Z\",\n        \"id\": 7,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/7\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:25:54.956Z\",\n        \"updatedAt\": \"2021-06-29T23:25:54.956Z\",\n        \"id\": 8,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/8\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:27:22.503Z\",\n        \"updatedAt\": \"2021-06-29T23:27:22.503Z\",\n        \"id\": 9,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/9\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:27:49.847Z\",\n        \"updatedAt\": \"2021-06-29T23:27:49.847Z\",\n        \"id\": 10,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/10\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:28:08.408Z\",\n        \"updatedAt\": \"2021-06-29T23:28:08.408Z\",\n        \"id\": 11,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/11\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:28:17.226Z\",\n        \"updatedAt\": \"2021-06-29T23:28:17.226Z\",\n        \"id\": 12,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/12\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:29:10.920Z\",\n        \"updatedAt\": \"2021-06-29T23:29:10.920Z\",\n        \"id\": 13,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/13\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:31:02.870Z\",\n        \"updatedAt\": \"2021-06-29T23:31:02.870Z\",\n        \"id\": 14,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/14\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:31:11.762Z\",\n        \"updatedAt\": \"2021-06-29T23:31:11.762Z\",\n        \"id\": 15,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/15\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-29T23:32:12.201Z\",\n        \"updatedAt\": \"2021-06-29T23:32:12.201Z\",\n        \"id\": 16,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/16\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-06-30T00:23:07.225Z\",\n        \"updatedAt\": \"2021-06-30T00:23:07.225Z\",\n        \"id\": 17,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/households/17\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Taylor Household\",\n        \"createdAt\": \"2021-07-10T23:52:56.361Z\",\n        \"updatedAt\": \"2021-07-10T23:52:56.361Z\",\n        \"id\": 18\n    },\n    {\n        \"name\": \"Smith Family\",\n        \"createdAt\": \"2025-05-04T09:35:18.829Z\",\n        \"updatedAt\": \"2025-05-04T09:35:18.829Z\",\n        \"id\": 19\n    },\n    {\n        \"name\": \"Norma Stamm\",\n        \"createdAt\": \"2025-05-04T10:26:22.362Z\",\n        \"updatedAt\": \"2025-05-04T10:26:22.362Z\",\n        \"id\": 20\n    },\n    {\n        \"name\": \"Al McClure\",\n        \"createdAt\": \"2025-05-04T10:28:13.252Z\",\n        \"updatedAt\": \"2025-05-04T10:28:13.252Z\",\n        \"id\": 21\n    },\n    {\n        \"name\": \"Miss Christine Boyer\",\n        \"createdAt\": \"2025-05-04T10:28:26.803Z\",\n        \"updatedAt\": \"2025-05-04T10:28:26.803Z\",\n        \"id\": 22\n    },\n    {\n        \"name\": \"Dean Hauck\",\n        \"createdAt\": \"2025-05-04T11:23:57.493Z\",\n        \"updatedAt\": \"2025-05-04T11:23:57.493Z\",\n        \"id\": 23\n    },\n    {\n        \"name\": \"Juan Kunze\",\n        \"createdAt\": \"2025-05-04T11:58:13.006Z\",\n        \"updatedAt\": \"2025-05-04T11:58:13.006Z\",\n        \"id\": 24\n    },\n    {\n        \"name\": \"Ben Heidenreich\",\n        \"createdAt\": \"2025-05-04T12:34:01.455Z\",\n        \"updatedAt\": \"2025-05-04T12:34:01.455Z\",\n        \"id\": 25\n    },\n    {\n        \"name\": \"Dr. Drew Thompson\",\n        \"createdAt\": \"2025-05-04T12:34:08.180Z\",\n        \"updatedAt\": \"2025-05-04T12:34:08.180Z\",\n        \"id\": 26\n    },\n    {\n        \"name\": \"Alexandra Huels\",\n        \"createdAt\": \"2025-05-04T12:34:10.909Z\",\n        \"updatedAt\": \"2025-05-04T12:34:10.909Z\",\n        \"id\": 27\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "2.3 Create New Household",
@@ -946,7 +1473,105 @@
 						},
 						"description": "Create a new household"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "2.3 Create New Household",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Henrietta White\"\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/households",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"households"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"81-6wT4/0N7FQjTPbaztMoy11ZITmA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:34:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Ben Heidenreich\",\n    \"createdAt\": \"2025-05-04T12:34:01.455Z\",\n    \"updatedAt\": \"2025-05-04T12:34:01.455Z\",\n    \"id\": 25\n}"
+						}
+					]
 				},
 				{
 					"name": "2.2 Get Household By ID",
@@ -1052,7 +1677,99 @@
 						},
 						"description": "Retrieve a household by its ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "2.2 Get Household By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/households/:housdeholdid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"households",
+										":housdeholdid"
+									],
+									"variable": [
+										{
+											"key": "housdeholdid",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"80-SE1UrlIQm0EIDsNEtpVw35JgNSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:34:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Alberto Hessel\",\n    \"createdAt\": \"2025-05-04T12:34:10.909Z\",\n    \"updatedAt\": \"2025-05-04T12:34:55.074Z\",\n    \"id\": 27\n}"
+						}
+					]
 				},
 				{
 					"name": "2.4 Update Household",
@@ -1175,7 +1892,112 @@
 						},
 						"description": "Update a household by its ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "2.4 Update Household",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Kelly Ruecker\"\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/households/:housdeholdid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"households",
+										":housdeholdid"
+									],
+									"variable": [
+										{
+											"key": "housdeholdid",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "124"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7c-SeKcwmm1zk3i/L1iqO+NuRnEMos\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:34:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Cindy Beer\",\n    \"createdAt\": \"2025-05-04T12:34:10.909Z\",\n    \"updatedAt\": \"2025-05-04T12:34:46.179Z\",\n    \"id\": 27\n}"
+						}
+					]
 				},
 				{
 					"name": "2.5 Delete Household",
@@ -1252,7 +2074,87 @@
 						},
 						"description": "Delete a household by its ID."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "2.5 Delete Household",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/households/:housdeholdid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"households",
+										":housdeholdid"
+									],
+									"variable": [
+										{
+											"key": "housdeholdid",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:35:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			],
 			"description": "Households Folder for all Household's Requests"
@@ -1365,7 +2267,91 @@
 						},
 						"description": "Retrieve all users"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "3.1 Get All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}users",
+									"host": [
+										"{{baseURL}}users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3328-0hO8PVLfumJiXoMtJQY4/pGfsMM\""
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:35:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"email\": \"chip+taylonr@gmail.com\",\n        \"firstName\": \"Chocolate Chip\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 1,\n        \"createdAt\": \"2021-06-26T20:53:02.478Z\",\n        \"updatedAt\": \"2021-06-26T20:53:02.478Z\",\n        \"wishlistId\": 2,\n        \"id\": 2,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/2\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 1,\n        \"createdAt\": \"2021-06-26T21:33:28.578Z\",\n        \"updatedAt\": \"2021-06-26T21:33:28.578Z\",\n        \"wishlistId\": 3,\n        \"id\": 3,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/3\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 1,\n        \"createdAt\": \"2021-06-26T21:33:28.596Z\",\n        \"updatedAt\": \"2021-06-26T21:33:28.596Z\",\n        \"wishlistId\": 4,\n        \"id\": 4,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/4\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 1,\n        \"createdAt\": \"2021-06-26T21:34:19.949Z\",\n        \"updatedAt\": \"2021-06-26T21:34:19.949Z\",\n        \"wishlistId\": 5,\n        \"id\": 5,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/5\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 1,\n        \"createdAt\": \"2021-06-26T21:34:19.966Z\",\n        \"updatedAt\": \"2021-06-26T21:34:19.966Z\",\n        \"wishlistId\": 6,\n        \"id\": 6,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/6\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 6,\n        \"createdAt\": \"2021-06-27T19:02:34.474Z\",\n        \"updatedAt\": \"2021-06-27T19:02:34.474Z\",\n        \"wishlistId\": 7,\n        \"id\": 7,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/7\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 6,\n        \"createdAt\": \"2021-06-27T19:02:34.504Z\",\n        \"updatedAt\": \"2021-06-27T19:02:34.504Z\",\n        \"wishlistId\": 8,\n        \"id\": 8,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/8\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 6,\n        \"createdAt\": \"2021-06-27T19:25:05.658Z\",\n        \"updatedAt\": \"2021-06-27T19:25:05.658Z\",\n        \"wishlistId\": 9,\n        \"id\": 9,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/9\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 6,\n        \"createdAt\": \"2021-06-27T19:27:15.137Z\",\n        \"updatedAt\": \"2021-06-27T19:27:15.137Z\",\n        \"wishlistId\": 10,\n        \"id\": 10,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/10\"\n            }\n        ]\n    },\n    {\n        \"email\": \"charles@mailinator.com\",\n        \"firstName\": \"Charles\",\n        \"lastName\": \"Spurgeon\",\n        \"householdId\": 7,\n        \"createdAt\": \"2021-06-29T23:24:17.944Z\",\n        \"updatedAt\": \"2021-06-29T23:24:17.944Z\",\n        \"wishlistId\": 11,\n        \"id\": 11,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/11\"\n            }\n        ]\n    },\n    {\n        \"email\": \"cs@mailinator.com\",\n        \"firstName\": \"C.S.\",\n        \"lastName\": \"Lewis\",\n        \"householdId\": 7,\n        \"createdAt\": \"2021-06-29T23:24:17.979Z\",\n        \"updatedAt\": \"2021-06-29T23:24:17.979Z\",\n        \"wishlistId\": 12,\n        \"id\": 12,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/12\"\n            }\n        ]\n    },\n    {\n        \"email\": \"jon@mailinator.com\",\n        \"firstName\": \"Jonathan\",\n        \"lastName\": \"Edwards\",\n        \"householdId\": 8,\n        \"createdAt\": \"2021-06-29T23:25:54.991Z\",\n        \"updatedAt\": \"2021-06-29T23:25:54.991Z\",\n        \"wishlistId\": 13,\n        \"id\": 13,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/13\"\n            }\n        ]\n    },\n    {\n        \"email\": \"cs@mailinator.com\",\n        \"firstName\": \"C.S.\",\n        \"lastName\": \"Lewis\",\n        \"householdId\": 8,\n        \"createdAt\": \"2021-06-29T23:25:55.024Z\",\n        \"updatedAt\": \"2021-06-29T23:25:55.024Z\",\n        \"wishlistId\": 14,\n        \"id\": 14,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/14\"\n            }\n        ]\n    },\n    {\n        \"email\": \"cs@mailinator.com\",\n        \"firstName\": \"C.S.\",\n        \"lastName\": \"Lewis\",\n        \"householdId\": 9,\n        \"createdAt\": \"2021-06-29T23:27:22.541Z\",\n        \"updatedAt\": \"2021-06-29T23:27:22.541Z\",\n        \"wishlistId\": 15,\n        \"id\": 15,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/15\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 9,\n        \"createdAt\": \"2021-06-29T23:27:22.576Z\",\n        \"updatedAt\": \"2021-06-29T23:27:22.576Z\",\n        \"wishlistId\": 16,\n        \"id\": 16,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/16\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 10,\n        \"createdAt\": \"2021-06-29T23:27:49.888Z\",\n        \"updatedAt\": \"2021-06-29T23:27:49.888Z\",\n        \"wishlistId\": 17,\n        \"id\": 17,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/17\"\n            }\n        ]\n    },\n    {\n        \"email\": \"jon@mailinator.com\",\n        \"firstName\": \"Jonathan\",\n        \"lastName\": \"Edwards\",\n        \"householdId\": 10,\n        \"createdAt\": \"2021-06-29T23:27:49.921Z\",\n        \"updatedAt\": \"2021-06-29T23:27:49.921Z\",\n        \"wishlistId\": 18,\n        \"id\": 18,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/18\"\n            }\n        ]\n    },\n    {\n        \"email\": \"charles@mailinator.com\",\n        \"firstName\": \"Charles\",\n        \"lastName\": \"Spurgeon\",\n        \"householdId\": 11,\n        \"createdAt\": \"2021-06-29T23:28:08.460Z\",\n        \"updatedAt\": \"2021-06-29T23:28:08.460Z\",\n        \"wishlistId\": 19,\n        \"id\": 19,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/19\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 11,\n        \"createdAt\": \"2021-06-29T23:28:08.492Z\",\n        \"updatedAt\": \"2021-06-29T23:28:08.492Z\",\n        \"wishlistId\": 20,\n        \"id\": 20,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/20\"\n            }\n        ]\n    },\n    {\n        \"email\": \"cs@mailinator.com\",\n        \"firstName\": \"C.S.\",\n        \"lastName\": \"Lewis\",\n        \"householdId\": 12,\n        \"createdAt\": \"2021-06-29T23:28:17.267Z\",\n        \"updatedAt\": \"2021-06-29T23:28:17.267Z\",\n        \"wishlistId\": 21,\n        \"id\": 21,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/21\"\n            }\n        ]\n    },\n    {\n        \"email\": \"jon@mailinator.com\",\n        \"firstName\": \"Jonathan\",\n        \"lastName\": \"Edwards\",\n        \"householdId\": 12,\n        \"createdAt\": \"2021-06-29T23:28:17.301Z\",\n        \"updatedAt\": \"2021-06-29T23:28:17.301Z\",\n        \"wishlistId\": 22,\n        \"id\": 22,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/22\"\n            }\n        ]\n    },\n    {\n        \"email\": \"charles@mailinator.com\",\n        \"firstName\": \"Charles\",\n        \"lastName\": \"Spurgeon\",\n        \"householdId\": 13,\n        \"createdAt\": \"2021-06-29T23:29:10.970Z\",\n        \"updatedAt\": \"2021-06-29T23:29:10.970Z\",\n        \"wishlistId\": 23,\n        \"id\": 23,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/23\"\n            }\n        ]\n    },\n    {\n        \"email\": \"jon@mailinator.com\",\n        \"firstName\": \"Jonathan\",\n        \"lastName\": \"Edwards\",\n        \"householdId\": 13,\n        \"createdAt\": \"2021-06-29T23:29:11.012Z\",\n        \"updatedAt\": \"2021-06-29T23:29:11.012Z\",\n        \"wishlistId\": 24,\n        \"id\": 24,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/24\"\n            }\n        ]\n    },\n    {\n        \"email\": \"jon@mailinator.com\",\n        \"firstName\": \"Jonathan\",\n        \"lastName\": \"Edwards\",\n        \"householdId\": 14,\n        \"createdAt\": \"2021-06-29T23:31:02.913Z\",\n        \"updatedAt\": \"2021-06-29T23:31:02.913Z\",\n        \"wishlistId\": 25,\n        \"id\": 25,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/25\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 14,\n        \"createdAt\": \"2021-06-29T23:31:02.955Z\",\n        \"updatedAt\": \"2021-06-29T23:31:02.955Z\",\n        \"wishlistId\": 26,\n        \"id\": 26,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/26\"\n            }\n        ]\n    },\n    {\n        \"email\": \"jon@mailinator.com\",\n        \"firstName\": \"Jonathan\",\n        \"lastName\": \"Edwards\",\n        \"householdId\": 15,\n        \"createdAt\": \"2021-06-29T23:31:11.806Z\",\n        \"updatedAt\": \"2021-06-29T23:31:11.806Z\",\n        \"wishlistId\": 27,\n        \"id\": 27,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/27\"\n            }\n        ]\n    },\n    {\n        \"email\": \"jon@mailinator.com\",\n        \"firstName\": \"Jonathan\",\n        \"lastName\": \"Edwards\",\n        \"householdId\": 15,\n        \"createdAt\": \"2021-06-29T23:31:11.842Z\",\n        \"updatedAt\": \"2021-06-29T23:31:11.842Z\",\n        \"wishlistId\": 28,\n        \"id\": 28,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/28\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"householdId\": 16,\n        \"createdAt\": \"2021-06-29T23:32:12.241Z\",\n        \"updatedAt\": \"2021-06-29T23:32:12.241Z\",\n        \"wishlistId\": 29,\n        \"id\": 29,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/29\"\n            }\n        ]\n    },\n    {\n        \"email\": \"cs@mailinator.com\",\n        \"firstName\": \"C.S.\",\n        \"lastName\": \"Lewis\",\n        \"householdId\": 16,\n        \"createdAt\": \"2021-06-29T23:32:12.282Z\",\n        \"updatedAt\": \"2021-06-29T23:32:12.282Z\",\n        \"wishlistId\": 30,\n        \"id\": 30,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/30\"\n            }\n        ]\n    },\n    {\n        \"email\": \"cs@mailinator.com\",\n        \"firstName\": \"C.S.\",\n        \"lastName\": \"Lewis\",\n        \"householdId\": 17,\n        \"createdAt\": \"2021-06-30T00:23:07.314Z\",\n        \"updatedAt\": \"2021-06-30T00:23:07.314Z\",\n        \"wishlistId\": 31,\n        \"id\": 31,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/31\"\n            }\n        ]\n    },\n    {\n        \"email\": \"cs@mailinator.com\",\n        \"firstName\": \"C.S.\",\n        \"lastName\": \"Lewis\",\n        \"householdId\": 17,\n        \"createdAt\": \"2021-06-30T00:23:07.407Z\",\n        \"updatedAt\": \"2021-06-30T00:23:07.407Z\",\n        \"wishlistId\": 32,\n        \"id\": 32,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/32\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"createdAt\": \"2021-06-30T01:21:35.350Z\",\n        \"updatedAt\": \"2021-06-30T01:21:35.350Z\",\n        \"wishlistId\": 33,\n        \"id\": 33,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/33\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"createdAt\": \"2021-06-30T01:23:19.443Z\",\n        \"updatedAt\": \"2021-06-30T01:23:19.443Z\",\n        \"wishlistId\": 34,\n        \"id\": 34,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/34\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"createdAt\": \"2021-07-01T22:25:45.718Z\",\n        \"updatedAt\": \"2021-07-01T22:25:45.792Z\",\n        \"wishlistId\": 35,\n        \"id\": 35,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/35\"\n            }\n        ]\n    },\n    {\n        \"email\": \"taylonr@gmail.com\",\n        \"firstName\": \"Nate\",\n        \"lastName\": \"Taylor\",\n        \"createdAt\": \"2021-07-01T22:31:49.175Z\",\n        \"updatedAt\": \"2021-07-01T22:31:49.175Z\",\n        \"wishlistId\": 36,\n        \"id\": 36,\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:3000/users/36\"\n            }\n        ]\n    },\n    {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"createdAt\": \"2025-05-04T09:39:47.405Z\",\n        \"updatedAt\": \"2025-05-04T09:39:47.405Z\",\n        \"id\": 37\n    },\n    {\n        \"firstName\": \"Gregory\",\n        \"lastName\": \"Schumm\",\n        \"email\": \"Garrett.McClure18@gmail.com\",\n        \"createdAt\": \"2025-05-04T10:44:22.499Z\",\n        \"updatedAt\": \"2025-05-04T10:44:22.499Z\",\n        \"id\": 38\n    },\n    {\n        \"firstName\": \"Javonte\",\n        \"lastName\": \"Conroy\",\n        \"email\": \"Florence.Kunze53@gmail.com\",\n        \"createdAt\": \"2025-05-04T10:46:09.430Z\",\n        \"updatedAt\": \"2025-05-04T10:46:09.430Z\",\n        \"id\": 39\n    },\n    {\n        \"firstName\": \"Bernard\",\n        \"lastName\": \"Nicolas\",\n        \"email\": \"Ernesto.Adams99@yahoo.com\",\n        \"createdAt\": \"2025-05-04T10:51:39.210Z\",\n        \"updatedAt\": \"2025-05-04T10:51:39.210Z\",\n        \"id\": 40\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "3.3 Create New User",
@@ -1478,7 +2464,100 @@
 						},
 						"description": "Create a new user"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "3.3 Create New User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomEmail}}\"\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}users",
+									"host": [
+										"{{baseURL}}users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b2-cKDBAOgam5ywzNAyhb+MJ2O6GTg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:35:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"firstName\": \"Eloy\",\n    \"lastName\": \"Hane\",\n    \"email\": \"Taylor41@yahoo.com\",\n    \"createdAt\": \"2025-05-04T12:35:52.832Z\",\n    \"updatedAt\": \"2025-05-04T12:35:52.832Z\",\n    \"id\": 41\n}"
+						}
+					]
 				},
 				{
 					"name": "3.2 Get User By ID",
@@ -1590,7 +2669,96 @@
 						},
 						"description": "Retrieve a user by its ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "3.2 Get User By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}users/:UserID",
+									"host": [
+										"{{baseURL}}users"
+									],
+									"path": [
+										":UserID"
+									],
+									"variable": [
+										{
+											"key": "UserID",
+											"value": "{{UserID}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "189"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bd-Vt5YelzP5ke5KB9Fuo6HzCf1M9Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:36:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"firstName\": \"Chyna\",\n    \"lastName\": \"Corwin\",\n    \"email\": \"Gladys.Collier16@yahoo.com\",\n    \"createdAt\": \"2025-05-04T12:36:02.635Z\",\n    \"updatedAt\": \"2025-05-04T12:36:02.635Z\",\n    \"id\": 42\n}"
+						}
+					]
 				},
 				{
 					"name": "3.4 Update User",
@@ -1702,7 +2870,104 @@
 						},
 						"description": "Update a user by its ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "3.4 Update User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomEmail}}\"\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}users/:UserID",
+									"host": [
+										"{{baseURL}}users"
+									],
+									"path": [
+										":UserID"
+									],
+									"variable": [
+										{
+											"key": "UserID",
+											"value": "{{UserID}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-ScnmpagrtXVfqOPxyk4vyvT8TyM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:36:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"firstName\": \"Elva\",\n    \"lastName\": \"Cremin\",\n    \"email\": \"Karson_Brakus30@yahoo.com\",\n    \"createdAt\": \"2025-05-04T12:36:02.635Z\",\n    \"updatedAt\": \"2025-05-04T12:36:26.948Z\",\n    \"id\": 42\n}"
+						}
+					]
 				},
 				{
 					"name": "3.5 Delete User",
@@ -1794,7 +3059,84 @@
 						},
 						"description": "Delete User by It's ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "3.5 Delete User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}users/:UserID",
+									"host": [
+										"{{baseURL}}users"
+									],
+									"path": [
+										":UserID"
+									],
+									"variable": [
+										{
+											"key": "UserID",
+											"value": "{{UserID}}"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:36:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			],
 			"description": "Users Folder for all user's Requests"
@@ -1906,7 +3248,91 @@
 						},
 						"description": "Retrive all wishlists"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "4.1 Get All Wishlists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}wishlists",
+									"host": [
+										"{{baseURL}}wishlists"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bea-beZmweu2xY+yCLhWHy0eqnE0aPE\""
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:37:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"Chocolate Chip's List\",\n        \"books\": [\n            2\n        ],\n        \"id\": 2\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 3\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 4\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 5\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 6\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [\n            1\n        ],\n        \"id\": 7\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [\n            2\n        ],\n        \"id\": 8\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 9\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 10\n    },\n    {\n        \"name\": \"Charles's List\",\n        \"books\": [],\n        \"id\": 11\n    },\n    {\n        \"name\": \"C.S.'s List\",\n        \"books\": [],\n        \"id\": 12\n    },\n    {\n        \"name\": \"Jonathan's List\",\n        \"books\": [],\n        \"id\": 13\n    },\n    {\n        \"name\": \"C.S.'s List\",\n        \"books\": [],\n        \"id\": 14\n    },\n    {\n        \"name\": \"C.S.'s List\",\n        \"books\": [],\n        \"id\": 15\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 16\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 17\n    },\n    {\n        \"name\": \"Jonathan's List\",\n        \"books\": [\n            27\n        ],\n        \"id\": 18\n    },\n    {\n        \"name\": \"Charles's List\",\n        \"books\": [\n            6\n        ],\n        \"id\": 19\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 20\n    },\n    {\n        \"name\": \"C.S.'s List\",\n        \"books\": [\n            10\n        ],\n        \"id\": 21\n    },\n    {\n        \"name\": \"Jonathan's List\",\n        \"books\": [],\n        \"id\": 22\n    },\n    {\n        \"name\": \"Charles's List\",\n        \"books\": [],\n        \"id\": 23\n    },\n    {\n        \"name\": \"Jonathan's List\",\n        \"books\": [\n            27\n        ],\n        \"id\": 24\n    },\n    {\n        \"name\": \"Jonathan's List\",\n        \"books\": [],\n        \"id\": 25\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [\n            9\n        ],\n        \"id\": 26\n    },\n    {\n        \"name\": \"Jonathan's List\",\n        \"books\": [\n            1\n        ],\n        \"id\": 27\n    },\n    {\n        \"name\": \"Jonathan's List\",\n        \"books\": [],\n        \"id\": 28\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [\n            13,\n            25,\n            7\n        ],\n        \"id\": 29\n    },\n    {\n        \"name\": \"C.S.'s List\",\n        \"books\": [\n            13\n        ],\n        \"id\": 30\n    },\n    {\n        \"name\": \"C.S.'s List\",\n        \"books\": [\n            23,\n            5,\n            8\n        ],\n        \"id\": 31\n    },\n    {\n        \"name\": \"C.S.'s List\",\n        \"books\": [\n            16\n        ],\n        \"id\": 32\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 33\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 34\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 35\n    },\n    {\n        \"name\": \"Nate's List\",\n        \"books\": [],\n        \"id\": 36\n    },\n    {\n        \"name\": \"Birthday Wishlist\",\n        \"books\": [],\n        \"createdAt\": \"2025-05-04T09:43:33.405Z\",\n        \"updatedAt\": \"2025-05-04T09:43:33.405Z\",\n        \"id\": 37\n    },\n    {\n        \"name\": \"Ms. Edward Strosin\",\n        \"books\": [],\n        \"createdAt\": \"2025-05-04T10:58:09.602Z\",\n        \"updatedAt\": \"2025-05-04T10:58:09.603Z\",\n        \"id\": 38\n    },\n    {\n        \"name\": \"Charlotte Hammes\",\n        \"books\": [],\n        \"createdAt\": \"2025-05-04T11:00:15.488Z\",\n        \"updatedAt\": \"2025-05-04T11:00:15.488Z\",\n        \"id\": 39\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "4.3 Create New Wishlist",
@@ -2018,7 +3444,100 @@
 						},
 						"description": "Create new wishlist"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "4.3 Create New Wishlist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{$randomFullName}}\",\n    \"books\": []\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}wishlists",
+									"host": [
+										"{{baseURL}}wishlists"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "144"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"90-Q9IuFC+SlZMyxS8wxGY5oAs7ShQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:37:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Kerry Rosenbaum\",\n    \"books\": [],\n    \"createdAt\": \"2025-05-04T12:37:11.728Z\",\n    \"updatedAt\": \"2025-05-04T12:37:11.728Z\",\n    \"id\": 40\n}"
+						}
+					]
 				},
 				{
 					"name": "4.2 Get Wishlist By ID",
@@ -2240,7 +3759,109 @@
 						},
 						"description": "Update wishlist by it's ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "4.4 Update Wishlist",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{$randomDomainName}}\",\n    \"books\": [1, 2]\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}wishlists/:WishlistID",
+									"host": [
+										"{{baseURL}}wishlists"
+									],
+									"path": [
+										":WishlistID"
+									],
+									"variable": [
+										{
+											"key": "WishlistID",
+											"value": "{{WishlistID}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin, Accept-Encoding"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "154"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9a-kAiB70fsC3m4/abMshCgzz2wKds\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:37:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"will.name\",\n    \"books\": [\n        1,\n        2\n    ],\n    \"createdAt\": \"2025-05-04T12:37:19.130Z\",\n    \"updatedAt\": \"2025-05-04T12:37:31.211Z\",\n    \"id\": 41\n}"
+						}
+					]
 				},
 				{
 					"name": "4.5 Delete Wishlist",
@@ -2317,7 +3938,84 @@
 						},
 						"description": "Delete wishlist by it's ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "4.5 Delete Wishlist",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "g-token",
+										"value": "ROM831ESV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}wishlists/:WishlistID",
+									"host": [
+										"{{baseURL}}wishlists"
+									],
+									"path": [
+										":WishlistID"
+									],
+									"variable": [
+										{
+											"key": "WishlistID",
+											"value": "{{WishlistID}}"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 May 2025 12:37:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			],
 			"description": "Wighlist Folder for all wishlist's Requests"
