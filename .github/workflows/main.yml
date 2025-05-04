@@ -11,29 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout your repo code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Install Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # 3. Install Newman and HTML extra reporter
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start server
+        run: |
+          nohup npm start &
+          sleep 10
+
       - name: Install Newman and reporter
         run: |
           npm install -g newman
           npm install -g newman-reporter-htmlextra
 
-      # 4. Run the Postman Collection
       - name: Run API Tests with Newman
         run: |
           newman run "Library.postman_collection.json" \
             --environment "Library_dev.postman_environment.json" \
             --reporters cli,htmlextra \
             --reporter-htmlextra-export newman/report.html
-
-      
-

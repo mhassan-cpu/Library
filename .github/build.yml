@@ -19,6 +19,14 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start server
+        run: |
+          nohup npm start &
+          sleep 10
+
       - name: Install Newman and reporter
         run: |
           npm install -g newman
@@ -30,9 +38,3 @@ jobs:
             --environment "Library_dev.postman_environment.json" \
             --reporters cli,htmlextra \
             --reporter-htmlextra-export newman/report.html
-
-      - name: Output report as base64 (manual download workaround)
-        run: |
-          echo "::group::Base64 Report"
-          base64 newman/report.html
-          echo "::endgroup::"
