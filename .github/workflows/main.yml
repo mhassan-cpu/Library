@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Start server
+        run: |
+         nohup npm start &
+         sleep 10
+    
       - name: Checkout repository
         uses: actions/checkout@v3
 

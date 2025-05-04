@@ -624,6 +624,15 @@
       "createdAt": "2025-05-04T12:33:12.650Z",
       "updatedAt": "2025-05-04T12:33:12.650Z",
       "id": 55
+    },
+    {
+      "title": "architect",
+      "author": "Chelsea Collins",
+      "isbn": "233-166-854",
+      "releaseDate": "2025-05-04T13:29:38.908Z",
+      "createdAt": "2025-05-04T13:29:38.926Z",
+      "updatedAt": "2025-05-04T13:29:38.926Z",
+      "id": 56
     }
   ],
   "households": [
