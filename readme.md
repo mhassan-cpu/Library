@@ -1,10 +1,12 @@
 # Node.js CRUD API with JSON Server
 
-This project demonstrates a RESTful API built with **Node.js** and **JSON Server**. It includes endpoints for **Books**, **Households**, **Users**, and **Wishlists**, supporting full CRUD operations: **Create**, **Read**, **Update**, and **Delete**.(Download.png)
-## API Endpoints
+This project demonstrates a RESTful API built with **Node.js** and **JSON Server**. It includes endpoints for **Books**, **Households**, **Users**, and **Wishlists**, supporting full CRUD operations: **Create**, **Read**, **Update**, and **Delete**.
+## API Endpoints(Download.png)
 
 
-## Example(Example.gif)
+## Local Testing Execution Example 
+
+[Local Testing Execution Example](Example.gif)
 
 
 ### Books
