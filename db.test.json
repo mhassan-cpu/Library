@@ -8,6 +8,15 @@
       "isbn": "1593281056",
       "createdAt": "2020-03-27T00:00:00.000Z",
       "updatedAt": "2020-03-27T00:00:00.000Z"
+    },
+    {
+      "title": "Book Title",
+      "author": "Author",
+      "isbn": "ISBN",
+      "releaseDate": "Release Date",
+      "createdAt": "2025-05-03T14:46:23.012Z",
+      "updatedAt": "2025-05-03T14:46:23.013Z",
+      "id": 6
     }
   ],
   "households": [],
