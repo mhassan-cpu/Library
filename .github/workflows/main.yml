@@ -2,7 +2,6 @@ name: Postman API Tests
 
 on:
   push:
-    branches: [ master ]
 
 jobs:
   run-api-tests:
@@ -12,15 +11,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm install -g newman newman-reporter-htmlextra
+        run: npm install
 
-      - name: Run API tests with Newman
-        run: npm run postmanTests
+      - name: Start server in background
+        run: |
+          nohup npm start > server.log 2>&1 &
+          sleep 10
+          cat server.log
 
-     
+      - name: Run Newman tests
+        run: npx newman run Library.postman_collection.json -e Library_dev.postman_environment.json --reporters=cli,htmlextra
