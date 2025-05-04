@@ -615,6 +615,15 @@
       "createdAt": "2025-05-04T10:04:11.596Z",
       "updatedAt": "2025-05-04T10:04:11.596Z",
       "id": 54
+    },
+    {
+      "title": "Checking",
+      "author": "Marty Moore",
+      "isbn": "288-306-637",
+      "releaseDate": "2025-05-04T12:33:12.636Z",
+      "createdAt": "2025-05-04T12:33:12.650Z",
+      "updatedAt": "2025-05-04T12:33:12.650Z",
+      "id": 55
     }
   ],
   "households": [
@@ -851,6 +860,18 @@
       "createdAt": "2025-05-04T11:58:13.006Z",
       "updatedAt": "2025-05-04T11:58:13.006Z",
       "id": 24
+    },
+    {
+      "name": "Ben Heidenreich",
+      "createdAt": "2025-05-04T12:34:01.455Z",
+      "updatedAt": "2025-05-04T12:34:01.455Z",
+      "id": 25
+    },
+    {
+      "name": "Dr. Drew Thompson",
+      "createdAt": "2025-05-04T12:34:08.180Z",
+      "updatedAt": "2025-05-04T12:34:08.180Z",
+      "id": 26
     }
   ],
   "users": [
@@ -1441,6 +1462,14 @@
       "createdAt": "2025-05-04T10:51:39.210Z",
       "updatedAt": "2025-05-04T10:51:39.210Z",
       "id": 40
+    },
+    {
+      "firstName": "Eloy",
+      "lastName": "Hane",
+      "email": "Taylor41@yahoo.com",
+      "createdAt": "2025-05-04T12:35:52.832Z",
+      "updatedAt": "2025-05-04T12:35:52.832Z",
+      "id": 41
     }
   ],
   "accounts": [
@@ -1683,6 +1712,13 @@
       "createdAt": "2025-05-04T11:00:15.488Z",
       "updatedAt": "2025-05-04T11:00:15.488Z",
       "id": 39
+    },
+    {
+      "name": "Kerry Rosenbaum",
+      "books": [],
+      "createdAt": "2025-05-04T12:37:11.728Z",
+      "updatedAt": "2025-05-04T12:37:11.728Z",
+      "id": 40
     }
   ]
 }
